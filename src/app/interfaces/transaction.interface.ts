@@ -1,10 +1,9 @@
 export interface Transaction {
-  id: number;
+  id?: number;
   type: string;
   description: string;
   amount: number;
   transaction_date: Date;
-  user_id: number;
 }
 
 export interface ResponseGetTransactions {

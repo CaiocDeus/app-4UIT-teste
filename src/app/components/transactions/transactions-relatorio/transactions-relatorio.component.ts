@@ -21,7 +21,11 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './transactions-relatorio.component.scss'
 })
 export class TransactionsRelatorioComponent implements OnInit {
-  relatorio!: TransactionRelatorio;
+  relatorio: TransactionRelatorio = {
+    total_receitas: 0,
+    total_despesas: 0,
+    saldo_total: 0
+  };
   isLoading: boolean = true;
 
   constructor(
@@ -39,10 +43,8 @@ export class TransactionsRelatorioComponent implements OnInit {
 
     this.transactionService.getRelatorio().subscribe({
       next: (response) => {
-        this.relatorio = response;
+        this.relatorio = { ...this.relatorio, ...response };
         this.isLoading = false;
-
-        console.log(this.relatorio);
 
         this.cd.detectChanges();
       },

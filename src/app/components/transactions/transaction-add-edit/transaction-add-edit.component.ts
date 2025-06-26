@@ -48,14 +48,22 @@ export class TransactionAddEditComponent implements OnInit {
     }
   }
 
+  // TODO Talvez de para melhorar
   onSubmit(): void {
     if (this.transactionAddEditForm.invalid) return;
+    const { type, description, amount, transaction_date } = this.transactionAddEditForm.value;
+    const transaction: Transaction = {
+      type,
+      description,
+      amount: amount.toFixed(2),
+      transaction_date
+    }
 
     this.isSaving = true;
 
     if (this.transaction) {
-      const updatedTransaction = { ...this.transaction, ...this.transactionAddEditForm.value };
-      this.transactionService.updateTransaction(updatedTransaction).subscribe({
+      transaction.id = this.transaction.id;
+      this.transactionService.updateTransaction(transaction).subscribe({
         next: () => {
           this.isSaving = false;
           this.dialogRef.close('saved');
@@ -66,7 +74,7 @@ export class TransactionAddEditComponent implements OnInit {
         }
       });
     } else {
-      this.transactionService.createTransaction(this.transactionAddEditForm.value).subscribe({
+      this.transactionService.createTransaction(transaction).subscribe({
         next: () => {
           this.isSaving = false;
           this.dialogRef.close('saved');

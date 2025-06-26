@@ -90,7 +90,8 @@ export class HomeComponent implements OnInit {
   }
 
   onReset(): void {
-    this.transactionsForm.reset();
+    this.transactionsForm.controls['tipo'].setValue('');
+    this.transactionsForm.controls['data_transacao'].setValue('');
     this.currentPage = 1;
     this.loadTransactions();
   }
