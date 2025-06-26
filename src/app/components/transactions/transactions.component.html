@@ -1,0 +1,49 @@
+<table mat-table [dataSource]="transactions" class="mat-elevation-z8">
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef>ID</th>
+    <td mat-cell *matCellDef="let t">{{ t.id }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="type">
+    <th mat-header-cell *matHeaderCellDef>Tipo</th>
+    <td mat-cell *matCellDef="let t">{{ t.type }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="description">
+    <th mat-header-cell *matHeaderCellDef>Descrição</th>
+    <td mat-cell *matCellDef="let t">{{ t.description }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="amount">
+    <th mat-header-cell *matHeaderCellDef>Valor</th>
+    <td mat-cell *matCellDef="let t">{{ t.amount | currency }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="transaction_date">
+    <th mat-header-cell *matHeaderCellDef>Data</th>
+    <td mat-cell *matCellDef="let t">{{ t.transaction_date | date:'dd-MM-yyyy' }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef>Ações</th>
+    <td mat-cell *matCellDef="let t">
+      <div class="table-actions">
+        <button class="editar" aria-label="Editar transação" (click)="onEdit(t)">Editar</button>
+        <button class="excluir" aria-label="Excluir transação" (click)="onDelete(t.id)">Excluir</button>
+      </div>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="['id', 'type', 'description', 'amount', 'transaction_date', 'actions']"></tr>
+  <tr mat-row *matRowDef="let row; columns: ['id', 'type', 'description', 'amount', 'transaction_date', 'actions'];"></tr>
+</table>
+
+<mat-paginator
+  [length]="total"
+  [pageSize]="perPage"
+  [pageIndex]="currentPage - 1"
+  [pageSizeOptions]="[5, 10, 20]"
+  [showFirstLastButtons]="true"
+  (page)="onPageChange($event)"
+  aria-label="Selecione a página">
+</mat-paginator>

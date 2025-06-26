@@ -1,0 +1,70 @@
+<h2 mat-dialog-title>
+  {{ transaction ? 'Editar' : 'Nova' }} Transação
+</h2>
+
+<form
+  [formGroup]="transactionAddEditForm"
+  *ngIf="transactionAddEditForm"
+  (ngSubmit)="onSubmit()"
+  aria-label="Formulário de transação"
+>
+  <mat-dialog-content class="form-content mat-typography">
+    <div class="input-wrapper">
+      <label for="type">Tipo</label>
+      <div class="input-content">
+        <select id="type" formControlName="type" aria-label="Tipo de transação">
+          <option value="receita">Receita</option>
+          <option value="despesa">Despesa</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="input-wrapper">
+      <label for="description">Descrição</label>
+      <div class="input-content">
+        <input
+          id="description"
+          type="text"
+          formControlName="description"
+          aria-label="Descrição da transação"
+        />
+      </div>
+    </div>
+
+    <div class="input-wrapper">
+      <label for="amount">Valor</label>
+      <div class="input-content">
+        <input
+          id="amount"
+          type="number"
+          formControlName="amount"
+          aria-label="Valor da transação"
+        />
+      </div>
+    </div>
+
+    <div class="input-wrapper">
+      <label for="transaction_date">Data da Transação</label>
+      <div class="input-content">
+        <input
+          id="transaction_date"
+          type="date"
+          formControlName="transaction_date"
+          aria-label="Data da transação"
+        />
+      </div>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end" class="form-actions">
+    <button
+      type="submit"
+      mat-button
+      [disabled]="isSaving || transactionAddEditForm.invalid"
+      aria-label="Salvar ou atualizar transação"
+    >
+      {{ transaction ? 'Atualizar' : 'Salvar' }}
+    </button>
+    <button type="button" mat-button mat-dialog-close aria-label="Cancelar">Cancelar</button>
+  </mat-dialog-actions>
+</form>

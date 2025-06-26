@@ -1,0 +1,54 @@
+<app-default-login-layout
+  title="Registre-se"
+  primaryBtnText="Registrar"
+  secondaryBtnText="Login"
+  (submit)="onSubmit()"
+  (navigate)="navigate()"
+  [disablePrimaryBtn]="!signupForm.valid"
+>
+  <form [formGroup]="signupForm">
+    <div class="input-wrapper">
+      <label for="data_transacao">Nome</label>
+      <div class="input-content">
+        <input
+          id="name"
+          type="text"
+          formControlName="name"
+          placeholder="John Doe"
+        />
+      </div>
+    </div>
+    <div class="input-wrapper">
+      <label for="data_transacao">Email</label>
+      <div class="input-content">
+        <input
+          id="email"
+          type="email"
+          formControlName="email"
+          placeholder="johndoe@gmail.com"
+        />
+      </div>
+    </div>
+    <div class="input-wrapper">
+      <label for="data_transacao">Senha</label>
+      <div class="input-content">
+        <input
+          id="password"
+          type="password"
+          formControlName="password"
+        />
+      </div>
+    </div>
+    <div class="input-wrapper">
+      <label for="data_transacao">Confirme Senha</label>
+      <div class="input-content">
+        <input
+          id="passwordConfirm"
+          type="password"
+          formControlName="passwordConfirm"
+          label="Confirme sua Senha"
+        />
+      </div>
+    </div>
+  </form>
+</app-default-login-layout>

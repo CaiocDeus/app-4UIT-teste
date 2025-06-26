@@ -1,0 +1,20 @@
+<h2 mat-dialog-title>Relatório</h2>
+
+<mat-dialog-content class="report-content mat-typography" aria-label="Resumo financeiro">
+  <div class="report-item">
+    <p class="report-label">Total Receitas</p>
+    <p class="report-value">{{ relatorio.total_receitas | currency }}</p>
+  </div>
+  <div class="report-item">
+    <p class="report-label">Total Despesas</p>
+    <p class="report-value">{{ relatorio.total_despesas | currency }}</p>
+  </div>
+  <div class="report-item">
+    <p class="report-label">Saldo Total</p>
+    <p class="report-value">{{ relatorio.saldo_total | currency }}</p>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end" class="report-actions">
+  <button mat-button mat-dialog-close aria-label="Fechar relatório">Fechar</button>
+</mat-dialog-actions>
